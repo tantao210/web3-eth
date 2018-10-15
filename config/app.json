@@ -1,0 +1,4 @@
+{
+    "port": 8200,
+    "rpcAddr" : "http://localhost:8545"
+}

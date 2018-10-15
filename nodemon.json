@@ -1,0 +1,36 @@
+{
+    "restartable": "rs",
+    "ignore": [
+        ".git",
+        "node_modules/**/node_modules",
+        "data"
+    ],
+    "verbose": true,
+    "execMap": {
+        "": "node",
+        "js": "node --harmony"
+    },
+    "events": {
+        "restart": "osascript -e 'display notification \"App restarted due to:\n'$FILENAME'\" with title \"nodemon\"'"
+    },
+    "watch": [
+        "config/*.js",
+        "server.js",
+        "controllers/*.js",
+        "src",
+        "account",
+        "contract",
+        "lib",
+        "public",
+        "router",
+        "transaction",
+        "utils",
+        "base"
+    ],
+    "env": {
+        "NODE_ENV": "development",
+        "PORT": "3000"
+    },
+    "ext": "js json",
+    "legacy-watch": false
+}
