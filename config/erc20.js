@@ -7,6 +7,7 @@ ERC20.prototype.list = [
     'bnb', // 1
     'bnt', // 2
     'ocn', // 3
+    'ven', // 4
 ];
 
 ERC20.prototype.getCoinType = function(type) {

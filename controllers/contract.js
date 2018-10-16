@@ -86,7 +86,9 @@ router.post('/deploy/ocn', function (req, res) {
             data: data,
             gas: '4700000'
         }, function (e, contract) {
-            console.log(e, contract);
+            if (e) {
+                console.error(e);
+            }
             if (typeof contract.address !== 'undefined') {
                 console.log('Contract mined! address: ' + contract.address + ' transactionHash: ' + contract.transactionHash);
                 result = ethResp.success(undefined, { address: contract.address, transactionHash: contract.transactionHash });
@@ -95,6 +97,32 @@ router.post('/deploy/ocn', function (req, res) {
             
         });
         res.send(result);
+});
+
+router.post('/deploy/ven', function(req, res) {
+    let name = 'VEN';
+    var _config = web3.eth.accounts[0];
+    web3.personal.unlockAccount(_config, '123456');
+    let result = ethResp.fail();
+    let abi = erc20.getABI(name.toLowerCase());
+    let data = erc20.getData(name.toLowerCase());
+    var vensaleContract = web3.eth.contract(abi);
+    var vensale = vensaleContract.new(
+    {
+        from: web3.eth.accounts[0], 
+        data: data, 
+        gas: '4700000'
+    }, function (e, contract){
+        if (e) {
+            console.error(e);
+        }
+        if (typeof contract.address !== 'undefined') {
+            console.log('Contract mined! address: ' + contract.address + ' transactionHash: ' + contract.transactionHash);
+            result = ethResp.success(undefined, { address: contract.address, transactionHash: contract.transactionHash });
+            erc20.addERC20(name.toLowerCase(), contract.address, contract.transactionHash);
+        }
+    });
+    res.send(result);
 });
 
 router.get('/deploy/test', function (req, res) {

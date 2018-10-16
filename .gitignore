@@ -8,6 +8,7 @@ node_modules/
 lib/
 package*.json
 *.node*
+nodemon.json
 
 # 测试数据文件
 data/ 

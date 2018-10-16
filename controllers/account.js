@@ -48,4 +48,25 @@ router.post('/create', newAccount);
 
 router.post('/balance', bodyParser.json(), getBalance);
 
+router.get('/balance/all/:type', function(req, res) {
+    let type = req.params.type;
+    let name = erc20.getCoinType(type);
+    var accounts = web3.eth.accounts;
+    var data = [];
+    var isEth = erc20.checkEthCoin(name);
+    if (!isEth) {
+        var myContract = contract.getContract(name);
+    }
+    accounts.forEach(function(item, i) {
+        var balance;
+        if (isEth) {
+            balance = web3.eth.getBalance(item);
+        } else {
+            balance = myContract.balanceOf(item);
+        }
+        data[i] = {address: item, balance: web3.fromWei(balance.toString(10), 'ether')};
+    });
+    res.send(data);
+});
+
 module.exports = router;

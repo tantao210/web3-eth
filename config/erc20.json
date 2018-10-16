@@ -14,5 +14,9 @@
     "ocn": {
         "address": "0x39f273a8a5376e50d64930be7fbec08a5a9d827b",
         "transactionHash": "0x0e280cb4effb1413bc64669f625568f6167f83e87950cb60c2ec43a0972b4db5"
+    },
+    "ven": {
+        "address": "0x256c1779e61026ce60828051094c5c652d291538",
+        "transactionHash": "0x0b86c6f2defb13822f5158224601cb4a095e3b388553b782312e7cb8b96725c9"
     }
 }
